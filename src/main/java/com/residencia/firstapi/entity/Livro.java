@@ -1,11 +1,15 @@
 package com.residencia.firstapi.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "livro")
@@ -22,6 +26,11 @@ public class Livro {
     @JoinColumn(name = "editora_id", referencedColumnName = "editora_id")
     @JsonIgnore
     private Editora editora;
+    
+    @ManyToOne
+    @JoinColumn(name = "autor_id", referencedColumnName = "autor_id")
+    @JsonIgnore
+    private Autor autor;
 
     public Integer getLivroId() {
         return livroId;
@@ -45,5 +54,13 @@ public class Livro {
 
     public void setEditora(Editora editora) {
         this.editora = editora;
+    }
+    
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
     }
 }
