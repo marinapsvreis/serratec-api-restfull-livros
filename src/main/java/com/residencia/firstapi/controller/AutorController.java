@@ -27,9 +27,14 @@ public class AutorController {
         return ResponseEntity.ok().body(autorService.findAll());
     }
 
-    @GetMapping("/{id}")
-    public Autor findById(@PathVariable(value = "id") Integer id){
-        return autorService.findById(id);
+    @GetMapping("/{autor_id}")
+    public Autor findById(@PathVariable Integer autor_id){
+        return autorService.findById(autor_id);
+    }
+    
+    @GetMapping("/nome/{autor_nome}")
+    public Autor findByName(@PathVariable String autor_nome){
+    	return autorService.findByName(autor_nome);
     }
 
     @PostMapping
@@ -37,13 +42,13 @@ public class AutorController {
         return autorService.save(autor);
     }
 
-    @PutMapping("/{id}")
-    public Autor update(@PathVariable Integer autorId, @RequestBody Autor autor) {
-        return autorService.update(autor, autorId);
+    @PutMapping("/{autor_id}")
+    public Autor update(@PathVariable Integer autor_id, @RequestBody Autor autor) {
+        return autorService.update(autor, autor_id);
     }
     
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer autorId){
-        autorService.delete(autorId);
+    @DeleteMapping("/{autor_id}")
+    public void delete(@PathVariable Integer autor_id){
+        autorService.delete(autor_id);
     }
 }

@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -24,15 +25,28 @@ public class Livro {
 
     @ManyToOne
     @JoinColumn(name = "editora_id", referencedColumnName = "editora_id")
-    @JsonIgnore
+    //@JsonIgnore
     private Editora editora;
     
     @ManyToOne
     @JoinColumn(name = "autor_id", referencedColumnName = "autor_id")
-    @JsonIgnore
+    //@JsonIgnore
     private Autor autor;
+    
+    public Livro() {
+    	
+    }
+    
+    public Livro(Integer livroId, String livroNome, Editora editora, Autor autor) {
+		this.livroId = livroId;
+		this.livroNome = livroNome;
+		this.editora = editora;
+		this.autor = autor;
+	}
 
-    public Integer getLivroId() {
+
+
+	public Integer getLivroId() {
         return livroId;
     }
 

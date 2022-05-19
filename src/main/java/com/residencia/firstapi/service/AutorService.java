@@ -2,6 +2,8 @@ package com.residencia.firstapi.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +21,11 @@ public class AutorService {
     }
 
     public Autor findById(Integer id){
-        return autorRepository.findById(id).get();
+    	return autorRepository.findById(id).get();
+    }
+    
+    public Autor findByName(String autorNome){
+        return autorRepository.findByAutorNome(autorNome);
     }
 
     public Autor save(Autor autor){

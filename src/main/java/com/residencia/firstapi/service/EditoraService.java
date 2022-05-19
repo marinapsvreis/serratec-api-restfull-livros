@@ -1,5 +1,6 @@
 package com.residencia.firstapi.service;
 
+import com.residencia.firstapi.entity.Autor;
 import com.residencia.firstapi.entity.Editora;
 import com.residencia.firstapi.repository.EditoraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,10 @@ public class EditoraService {
 
     public Editora findById(Integer id){
         return editoraRepository.findById(id).get();
+    }
+    
+    public Editora findByName(String editoraNome){
+        return editoraRepository.findByEditoraNome(editoraNome);
     }
 
     public Editora save(Editora editora){

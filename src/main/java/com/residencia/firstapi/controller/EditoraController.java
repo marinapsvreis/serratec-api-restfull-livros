@@ -1,12 +1,20 @@
 package com.residencia.firstapi.controller;
 
-import com.residencia.firstapi.entity.Editora;
-import com.residencia.firstapi.service.EditoraService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.residencia.firstapi.entity.Editora;
+import com.residencia.firstapi.service.EditoraService;
 
 @RestController
 @RequestMapping("/editora")
@@ -19,9 +27,14 @@ public class EditoraController {
         return ResponseEntity.ok().body(editoraService.findAll());
     }
 
-    @GetMapping("/{id}")
-    public Editora findById(@PathVariable(value = "id") Integer id){
-        return editoraService.findById(id);
+    @GetMapping("/{editora_id}")
+    public Editora findById(@PathVariable Integer editora_id){
+        return editoraService.findById(editora_id);
+    }
+    
+    @GetMapping("/nome/{editora_nome}")
+    public Editora findByName(@PathVariable String editora_nome){
+    	return editoraService.findByName(editora_nome);
     }
 
     @PostMapping
@@ -29,13 +42,13 @@ public class EditoraController {
         return editoraService.save(editora);
     }
 
-    @PutMapping("/{id}")
-    public Editora update(@PathVariable Integer editoraId, @RequestBody Editora editora) {
-        return editoraService.update(editora, editoraId);
+    @PutMapping("/{editora_id}")
+    public Editora update(@PathVariable Integer editora_id, @RequestBody Editora editora) {
+        return editoraService.update(editora, editora_id);
     }
     
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer editoraId){
-        editoraService.delete(editoraId);
+    @DeleteMapping("/{editora_id}")
+    public void delete(@PathVariable Integer editora_id){
+        editoraService.delete(editora_id);
     }
 }
