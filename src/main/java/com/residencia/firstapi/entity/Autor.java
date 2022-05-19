@@ -21,6 +21,7 @@ public class Autor {
 
     @OneToMany(mappedBy = "autor")
     @JsonIgnore
+    //@JsonManagedReference (value = "lista_livros_autor")
     private List<Livro> livroList;
 
     public Integer getAutorId() {

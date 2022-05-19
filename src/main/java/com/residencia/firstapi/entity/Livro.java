@@ -26,11 +26,13 @@ public class Livro {
     @ManyToOne
     @JoinColumn(name = "editora_id", referencedColumnName = "editora_id")
     //@JsonIgnore
+    //@JsonBackReference (value = "lista_livros_editora")
     private Editora editora;
     
     @ManyToOne
     @JoinColumn(name = "autor_id", referencedColumnName = "autor_id")
     //@JsonIgnore
+    //@JsonBackReference (value = "lista_livros_autor")
     private Autor autor;
     
     public Livro() {
