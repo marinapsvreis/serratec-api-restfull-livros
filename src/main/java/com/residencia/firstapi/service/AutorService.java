@@ -2,8 +2,6 @@ package com.residencia.firstapi.service;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +31,9 @@ public class AutorService {
     }
 
     public Autor update(Autor autor, Integer id){
-        return autorRepository.save(autor);
+    	Autor newAutor = findById(id);
+    	newAutor.setAutorNome(autor.getAutorNome());
+        return autorRepository.save(newAutor);
     }
 
     public void delete(Integer id){

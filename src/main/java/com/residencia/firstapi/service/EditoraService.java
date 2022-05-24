@@ -1,12 +1,12 @@
 package com.residencia.firstapi.service;
 
-import com.residencia.firstapi.entity.Autor;
-import com.residencia.firstapi.entity.Editora;
-import com.residencia.firstapi.repository.EditoraRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.residencia.firstapi.entity.Editora;
+import com.residencia.firstapi.repository.EditoraRepository;
 
 @Service
 public class EditoraService {
@@ -31,7 +31,9 @@ public class EditoraService {
     }
 
     public Editora update(Editora editora, Integer id){
-        return editoraRepository.save(editora);
+    	Editora newEditora = findById(id);
+    	newEditora.setEditoraNome(editora.getEditoraNome());
+        return editoraRepository.save(newEditora);
     }
 
     public void delete(Integer id){
